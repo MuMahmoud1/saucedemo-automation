@@ -1,0 +1,1 @@
+{"uuid":"8a46efa9-7d84-4196-aed4-b01f3c681ed1","name":"goToCartPageFromPDP","children":["8b4fc1a9-c059-4ece-bbb2-8c6cc69ebbd9"],"befores":[{"name":"products","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1779495621202,"stop":1779495621202}],"afters":[],"start":1779495621202,"stop":1779495649243}

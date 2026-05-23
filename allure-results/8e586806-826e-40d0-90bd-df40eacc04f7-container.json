@@ -1,0 +1,1 @@
+{"uuid":"8e586806-826e-40d0-90bd-df40eacc04f7","name":"removeItemToCartInPDPage","children":["085a307e-a076-4c75-a7bd-19dec49c3d62"],"befores":[{"name":"products","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1779495227312,"stop":1779495227312}],"afters":[],"start":1779495227312,"stop":1779495253390}

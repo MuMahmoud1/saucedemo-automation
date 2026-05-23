@@ -1,0 +1,1 @@
+{"uuid":"b5641bff-32cb-492c-ae69-523bbbcf62bb","name":"shouldCheckOutFromCart","children":["5447b3f7-759a-4aea-84f2-ebc4f0d65a17"],"befores":[{"name":"productsID","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1779465510459,"stop":1779465510462}],"afters":[],"start":1779465510456,"stop":1779465598893}

@@ -1,0 +1,1 @@
+{"uuid":"95b5d95e-5cd9-4bd5-b730-c8421784c211","name":"CompleteCheckoutTestFlowWithOneProduct","children":["5c0a7e8e-7169-4bb7-a2ad-c01208b94c81"],"befores":[{"name":"productsID","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1779470067920,"stop":1779470067920}],"afters":[],"start":1779470067920,"stop":1779470151878}

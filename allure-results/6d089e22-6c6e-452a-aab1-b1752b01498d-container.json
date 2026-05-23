@@ -1,0 +1,1 @@
+{"uuid":"6d089e22-6c6e-452a-aab1-b1752b01498d","name":"shouldAddAllProductsInCart","children":["9df78d5f-f9f4-4034-8317-3a4b5a4798b4"],"befores":[{"name":"productsID","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1779495967934,"stop":1779495967937}],"afters":[],"start":1779495967926,"stop":1779496074940}

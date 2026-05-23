@@ -1,0 +1,1 @@
+{"uuid":"d217f6e2-ea95-46fb-a5ad-a44e65fa236f","name":"goToPDPageUsingImg","children":["c32cba65-d4df-4ad6-8038-8b20b05dd486"],"befores":[{"name":"productsID","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1779493394074,"stop":1779493394074}],"afters":[],"start":1779493394074,"stop":1779493407570}
