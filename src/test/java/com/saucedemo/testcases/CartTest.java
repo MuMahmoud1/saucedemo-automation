@@ -2,6 +2,7 @@ package com.saucedemo.testcases;
 
 import com.saucedemo.base.BaseTest;
 import com.saucedemo.pages.CartPage;
+import com.saucedemo.pages.CheckoutStepOnePage;
 import com.saucedemo.pages.LoginPage;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -54,6 +55,8 @@ public class CartTest extends BaseTest {
                 .addOneProductToCart(productName)
                 .clickCartButton()
                 .removeProduct(productName);
+        boolean isCartDisplayed = loginPage.isCartBadgeDisplayed();
+        Assert.assertTrue(isCartDisplayed);
     }
 
     @Story("Add All Products To Cart")
@@ -66,6 +69,9 @@ public class CartTest extends BaseTest {
                 .login("standard_user", "secret_sauce")
                 .addAllProductsToCart()
                 .clickCartButton();
+        CartPage cartPage = new CartPage(driver);
+        Assert.assertEquals(cartPage.getCartCount(), 6);
+
     }
 
     @Story("Remove All Products From Cart")
@@ -79,6 +85,8 @@ public class CartTest extends BaseTest {
                 .addAllProductsToCart()
                 .clickCartButton()
                 .removeAllProducts();
+        boolean isCartDisplayed = loginPage.isCartBadgeDisplayed();
+        Assert.assertTrue(isCartDisplayed);
     }
 
 
@@ -93,6 +101,8 @@ public class CartTest extends BaseTest {
                 .addOneProductToCart(productName)
                 .clickCartButton()
                 .continueShoppingButton();
+        boolean isPageTitleDisplayed = loginPage.isPageDisplayed();
+        Assert.assertTrue(isPageTitleDisplayed);
 
     }
 
@@ -107,5 +117,6 @@ public class CartTest extends BaseTest {
                 .addOneProductToCart(productName)
                 .clickCartButton()
                 .checkoutButton();
+
     }
 }
