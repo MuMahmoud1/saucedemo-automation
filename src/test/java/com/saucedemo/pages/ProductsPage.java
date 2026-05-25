@@ -17,8 +17,6 @@ public class ProductsPage extends BasePage {
     }
 
     //Locators
-    @FindBy(css = "[data-test=\"title\"]")
-    private WebElement pageTitle;
 
     @FindBy(css = "[data-test^=\"add-to-cart\"]")
     private List<WebElement> addToCart;
@@ -84,9 +82,6 @@ public class ProductsPage extends BasePage {
 
 
     //Validation
-    public boolean isPageTitleDisplayed() {
-        return pageTitle.isDisplayed();
-    }
 
     //------------------- Sorting -------------------//
     @FindBy(css = "[data-test=\"product-sort-container\"]")

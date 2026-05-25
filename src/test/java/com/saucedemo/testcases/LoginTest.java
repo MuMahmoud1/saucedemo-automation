@@ -2,6 +2,7 @@ package com.saucedemo.testcases;
 
 import com.saucedemo.base.BaseTest;
 import com.saucedemo.pages.LoginPage;
+import com.saucedemo.pages.ProductsPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -18,12 +19,11 @@ public class LoginTest extends BaseTest {
     @Test(description = "Login with Valid Username And Password")
     public void LoginTestWithValidUser() {
         LoginPage loginPage = new LoginPage(driver);
-        boolean isPageTitleDisplayed =
+        ProductsPage isPageTitleDisplayed =
                 loginPage
                         .load()
-                        .login("standard_user", "secret_sauce")
-                        .isPageTitleDisplayed();
-        Assert.assertTrue(isPageTitleDisplayed);
+                        .login("standard_user", "secret_sauce");
+        Assert.assertEquals(isPageTitleDisplayed.getPageTitle(), "Products");
 
     }
 
@@ -32,12 +32,11 @@ public class LoginTest extends BaseTest {
     @Test(description = "Login with A CapsLocked Username And valid password")
     public void LoginTestWithCapsLockedUser() {
         LoginPage loginPage = new LoginPage(driver);
-        boolean isPageTitleDisplayed =
+        ProductsPage isPageTitleDisplayed =
                 loginPage
                         .load()
-                        .login("STANDARD_USER", "secret_sauce")
-                        .isPageTitleDisplayed();
-        Assert.assertTrue(isPageTitleDisplayed);
+                        .login("STANDARD_USER", "secret_sauce");
+        Assert.assertEquals(isPageTitleDisplayed.getPageTitle(), "Products");
 
     }
 

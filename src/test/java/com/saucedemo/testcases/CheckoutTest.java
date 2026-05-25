@@ -1,8 +1,7 @@
 package com.saucedemo.testcases;
 
 import com.saucedemo.base.BaseTest;
-import com.saucedemo.pages.CheckoutStepOnePage;
-import com.saucedemo.pages.LoginPage;
+import com.saucedemo.pages.*;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -30,6 +29,7 @@ public class CheckoutTest extends BaseTest {
     @Test(dataProvider = "productsID",description = "Verify Complete Checkout Flow With Only One Product")
     public void CompleteCheckoutTestFlowWithOneProduct(String productName) {
         LoginPage loginPage = new LoginPage(driver);
+        CheckoutFinishPage finishPage =
                 loginPage
                         .load()
                         .login("standard_user","secret_sauce")
@@ -38,6 +38,7 @@ public class CheckoutTest extends BaseTest {
                         .checkoutButton()
                         .inputField("test","test","3")    //First Checkout Page
                         .clickFinishButton();                                    //Second Checkout Page
+        Assert.assertTrue(finishPage.isPageTitleDisplayed());
     }
 
     @Story("Complete Checkout Flow With Missing FirstName")
@@ -113,6 +114,7 @@ public class CheckoutTest extends BaseTest {
     @Test(dataProvider = "productsID",description = "Verify Complete Checkout Flow With All Products Added")
     public void CompleteCheckoutTestFlowWithAllProducts(String productName) {
         LoginPage loginPage = new LoginPage(driver);
+        CheckoutFinishPage finishPage =
                 loginPage
                         .load()
                         .login("standard_user","secret_sauce")
@@ -121,6 +123,7 @@ public class CheckoutTest extends BaseTest {
                         .checkoutButton()
                         .inputField("test","test","3")    //First Checkout Page
                         .clickFinishButton();                                    //Second Checkout Page
+        Assert.assertEquals(finishPage.getPageTitle(), "Checkout: Complete!");
     }
 
     @Story("Complete Checkout With Empty Cart")
@@ -172,9 +175,10 @@ public class CheckoutTest extends BaseTest {
                         .addOneProductToCart(productName)
                         .clickCartButton()
                         .checkoutButton()
-                        .clickCancelButton()
+                        .firstClickCancelButton()
                     .isProductPriceDisplayed();
-        Assert.assertTrue(isCancelCompleted);
+        CartPage cartPage = new CartPage(driver);
+        Assert.assertEquals(cartPage.getPageTitle(), "Your Cart");
 
     }
 
@@ -183,8 +187,7 @@ public class CheckoutTest extends BaseTest {
     @Test(dataProvider = "productsID",description = "Verify Cancel Checkout Flow Using Cancel Button in the Second Checkout Page and Return To Products Page")
     public void CancelCheckoutTestFlowFromStepTwo(String productName) {
         LoginPage loginPage = new LoginPage(driver);
-
-        boolean isCancelCompleted =
+        ProductsPage productsPage =
                 loginPage
                         .load()
                         .login("standard_user","secret_sauce")
@@ -192,9 +195,8 @@ public class CheckoutTest extends BaseTest {
                         .clickCartButton()
                         .checkoutButton()
                         .inputField("test","test","3")            //First Checkout Page
-                        .cancelCheckoutPage()                                           //Second CheckoutPage
-                        .isPageTitleDisplayed();
-        Assert.assertTrue(isCancelCompleted);
+                        .secondCancelCheckoutPage();                                           //Second CheckoutPage
+        Assert.assertTrue(productsPage.isPageTitleDisplayed());
 
     }
 

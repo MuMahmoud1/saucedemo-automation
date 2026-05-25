@@ -4,6 +4,10 @@ import com.saucedemo.base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CheckoutStepTwoPage extends BasePage {
     public CheckoutStepTwoPage(WebDriver driver) {
@@ -23,6 +27,8 @@ public class CheckoutStepTwoPage extends BasePage {
 
     //Actions
     public CheckoutFinishPage clickFinishButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(getFinishButton));
         getFinishButton.click();
         return new CheckoutFinishPage(driver);
     }
@@ -32,7 +38,9 @@ public class CheckoutStepTwoPage extends BasePage {
         return new ProductDetailsPage(driver);
     }
 
-    public ProductsPage cancelCheckoutPage() {
+    public ProductsPage secondCancelCheckoutPage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(getCancelButton));
         getCancelButton.click();
         return new ProductsPage(driver);
     }

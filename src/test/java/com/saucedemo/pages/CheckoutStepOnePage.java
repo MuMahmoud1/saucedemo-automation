@@ -29,7 +29,7 @@ public class CheckoutStepOnePage extends BasePage {
         continueButton.click();
         return new CheckoutStepTwoPage(driver);
     }
-    public CartPage clickCancelButton() {
+    public CartPage firstClickCancelButton() {
         cancelButton.click();
         return new CartPage(driver);
     }

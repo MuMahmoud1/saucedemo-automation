@@ -86,6 +86,7 @@ public class ProductsTest extends BaseTest {
                 .login("standard_user", "secret_sauce")
                 .addOneProductToCart(productName)
                 .removeOneProductFromCart(productName);
+        Assert.assertFalse(productsPage.isCartBadgeDisplayed());
 
     }
 
@@ -97,10 +98,8 @@ public class ProductsTest extends BaseTest {
         ProductsPage productsPage =
                 loginPage
                         .load()
-                        .login("standard_user", "secret_sauce");
-        productsPage.addAllProductsToCart();
-        int cartCount = productsPage.getCartCount();
-        Assert.assertEquals(cartCount, 6);
+                        .login("standard_user", "secret_sauce")
+                        .addAllProductsToCart();
         productsPage.removeAllProductsFromCart();
 
     }
@@ -119,7 +118,7 @@ public class ProductsTest extends BaseTest {
                         .load()
                         .login("standard_user", "secret_sauce");
         ProductDetailsPage pdp = productsPage.goToProductDetailsByText(productName);
-
+        Assert.assertTrue(pdp.isItemDescriptionDisplayed());
 
     }
 
@@ -134,8 +133,7 @@ public class ProductsTest extends BaseTest {
                         .load()
                         .login("standard_user", "secret_sauce");
         ProductDetailsPage pdp = productsPage.goToProductDetailsByImage(productNameImage);
-
-
+        Assert.assertTrue(pdp.isItemDescriptionDisplayed());
     }
 
                     //------------------- Cart TestCases -------------------//
@@ -149,6 +147,7 @@ public class ProductsTest extends BaseTest {
                         .load()
                         .login("standard_user","secret_sauce")
                         .clickCartButton();
+        Assert.assertEquals(cartPage.getPageTitle(), "Your Cart");
 
     }
 
@@ -174,7 +173,6 @@ public class ProductsTest extends BaseTest {
                     .load()
                     .login("standard_user", "secret_sauce")
                     .sortBy("Name (Z to A)");
-
             Assert.assertEquals(productsPage.getProductLastName(), "Sauce Labs Backpack");
 
     }

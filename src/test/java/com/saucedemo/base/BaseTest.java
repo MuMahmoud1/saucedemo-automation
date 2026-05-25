@@ -11,5 +11,9 @@ public class BaseTest {
     @BeforeMethod
     public void Setup() {driver = new DriverFactory().initDriver();}
     @AfterMethod
-    public void TearDown() {driver.quit();}
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 }

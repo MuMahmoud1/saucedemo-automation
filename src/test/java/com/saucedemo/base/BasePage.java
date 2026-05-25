@@ -17,6 +17,10 @@ public class BasePage {
     }
 
     //Locators
+
+    @FindBy(css = "[data-test='title']")
+    private WebElement pageTitle;
+
     @FindBy(css = "[data-test=\"shopping-cart-link\"]")
     private WebElement cartButton;
 
@@ -73,6 +77,14 @@ public class BasePage {
         return !driver.findElements(
                 By.cssSelector(".shopping_cart_badge")
         ).isEmpty();
+    }
+
+    public boolean isPageTitleDisplayed() {
+        return pageTitle.isDisplayed();
+    }
+
+    public String getPageTitle() {
+        return pageTitle.getText();
     }
 
 }

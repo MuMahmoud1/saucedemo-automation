@@ -1,8 +1,10 @@
 package com.saucedemo.testcases;
 
 import com.saucedemo.base.BaseTest;
+import com.saucedemo.pages.CartPage;
 import com.saucedemo.pages.LoginPage;
 import com.saucedemo.pages.ProductDetailsPage;
+import com.saucedemo.pages.ProductsPage;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -33,11 +35,14 @@ public class PDPTest extends BaseTest {
     @Test(dataProvider = "products",description = "Add an Item To Cart From Product Detailed Page")
     public void addItemToCartInPDPage(String productName) {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage
+        ProductDetailsPage pdp =
+                loginPage
                 .load()
                 .login("standard_user", "secret_sauce")
                 .goToProductDetailsByText(productName)
                 .clickAddToCartButton();
+        Assert.assertEquals(pdp.getCartCount(), 1);
+
     }
 
     @Story("Remove Item From Cart")
@@ -45,12 +50,14 @@ public class PDPTest extends BaseTest {
     @Test(dataProvider = "products",description = "Remove an Item From Cart in Product Detailed Page")
     public void removeItemToCartInPDPage(String productName) {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage
-                .load()
-                .login("standard_user", "secret_sauce")
-                .goToProductDetailsByText(productName)
-                .clickAddToCartButton()
-                .clickRemoveButton();
+        ProductDetailsPage pdp =
+                loginPage
+                    .load()
+                    .login("standard_user", "secret_sauce")
+                    .goToProductDetailsByText(productName)
+                    .clickAddToCartButton()
+                    .clickRemoveButton();
+        Assert.assertFalse(pdp.isCartBadgeDisplayed());
     }
 
 
@@ -81,15 +88,13 @@ public class PDPTest extends BaseTest {
     public void returnToProductsPageFromPDP(String productName) {
         LoginPage loginPage = new LoginPage(driver);
 
-        boolean returnToProductsPage =
+        ProductsPage returnToProductsPage =
                 loginPage
                     .load()
                     .login("standard_user", "secret_sauce")
                     .goToProductDetailsByText(productName)
-                    .clickReturnToProductsPage()
-                    .isPageTitleDisplayed();
-
-        Assert.assertTrue(returnToProductsPage);
+                    .clickReturnToProductsPage();
+        Assert.assertEquals(returnToProductsPage.getPageTitle(), "Products");
 
     }
 
@@ -100,11 +105,13 @@ public class PDPTest extends BaseTest {
     @Test(dataProvider = "products",description = "Click on Cart Icon when user is in the PDP")
     public void goToCartPageFromPDP(String productName) {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage
-                .load()
-                .login("standard_user", "secret_sauce")
-                .goToProductDetailsByText(productName)
-                .clickCartButton();
+        CartPage cartPage=
+                loginPage
+                    .load()
+                    .login("standard_user", "secret_sauce")
+                    .goToProductDetailsByText(productName)
+                    .clickCartButton();
+        Assert.assertEquals(cartPage.getPageTitle(), "Your Cart");
 
     }
 }

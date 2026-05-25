@@ -66,6 +66,7 @@ public class NavigationTest extends BaseTest {
                 .login("standard_user", "secret_sauce")
                 .clickBurgerMenuButton()
                 .clickAboutButton();
+        Assert.assertTrue(driver.getCurrentUrl().contains("saucelabs.com"));
     }
 
     @Story("Reset Page")
