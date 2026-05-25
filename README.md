@@ -69,7 +69,14 @@ src/
 - [ ] Retry logic for flaky tests
 
 ## How To Run
+
 ```bash
+# Clone the repository
+git clone https://github.com/MuMahmoud1/saucedemo-automation.git
+
+# Navigate to project directory
+cd saucedemo-automation
+
 # Run all tests
 mvn clean test
 
